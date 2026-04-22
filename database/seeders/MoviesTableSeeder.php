@@ -1,24 +1,34 @@
 <?php
-
 namespace Database\Seeders;
-
 use Illuminate\Database\Seeder;
-use App\Models\Movie;
+use Illuminate\Support\Facades\DB;
 
 class MoviesTableSeeder extends Seeder
 {
     public function run(): void
     {
-        Movie::truncate();
-        $faker = \Faker\Factory::create();
-
-        for ($i = 0; $i < 10; $i++) {
-            Movie::create([
-                'title'    => $faker->sentence,
-                'synopsis' => $faker->paragraph,
-                'year'     => $faker->numberBetween(1990, 2024),
-                'cover'    => $faker->imageUrl(),
-            ]);
-        }
+        DB::table('movies')->truncate();
+        DB::table('movies')->insert([
+            ['title' => 'Los Vengadores', 'synopsis' => 'Nick Fury recluta a Iron Man, Hulk, Thor y el Capitán América para formar un equipo que salve el mundo de Loki.', 'year' => 2012, 'cover' => 'https://m.media-amazon.com/images/M/MV5BNDYxNjQyMjAtNTdiOS00NGYwLWFmNTAtNThmYjU5ZGM2YTI1XkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg', 'created_at' => now(), 'updated_at' => now()],
+            ['title' => 'El Padrino', 'synopsis' => 'El patriarca de una dinastía del crimen organizado transfiere el control de su imperio a su reluctante hijo.', 'year' => 1972, 'cover' => 'https://m.media-amazon.com/images/M/MV5BM2MyNjYxNmUtYTAwNi00MTYxLWJmNWYtYzZlODY3ZTk3OTFlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_.jpg', 'created_at' => now(), 'updated_at' => now()],
+            ['title' => 'El Caballero de la Noche', 'synopsis' => 'Batman enfrenta al Joker, un criminal que busca sumir Gotham en el caos y la anarquía.', 'year' => 2008, 'cover' => 'https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_.jpg', 'created_at' => now(), 'updated_at' => now()],
+            ['title' => 'Interestelar', 'synopsis' => 'Un grupo de astronautas viaja a través de un agujero de gusano en busca de un nuevo hogar para la humanidad.', 'year' => 2014, 'cover' => 'https://m.media-amazon.com/images/M/MV5BZjdkOTU3MDktN2IxOS00OGEyLWFmMjktY2FiMmZkNWIyODZiXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg', 'created_at' => now(), 'updated_at' => now()],
+            ['title' => 'El Origen', 'synopsis' => 'Un ladrón que roba secretos corporativos a través del uso de tecnología de sueños compartidos recibe una tarea inversa.', 'year' => 2010, 'cover' => 'https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_.jpg', 'created_at' => now(), 'updated_at' => now()],
+            ['title' => 'Titanic', 'synopsis' => 'Un joven artista y una joven aristócrata se enamoran a bordo del lujoso y desafortunado R.M.S. Titanic.', 'year' => 1997, 'cover' => 'https://m.media-amazon.com/images/M/MV5BMDdmZGU3NDQtY2E5My00ZTliLWIzOTUtMTY4ZGI1YjdiNjk3XkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_.jpg', 'created_at' => now(), 'updated_at' => now()],
+            ['title' => 'Forrest Gump', 'synopsis' => 'Las presidencias de Kennedy y Johnson, Vietnam, Watergate y otros eventos históricos se desarrollan desde la perspectiva de un hombre de Alabama.', 'year' => 1994, 'cover' => 'https://m.media-amazon.com/images/M/MV5BNWIwODRlZTUtY2U3ZS00Yzg1LWJhNzYtMmZiYmEyNmU1NjMzXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_.jpg', 'created_at' => now(), 'updated_at' => now()],
+            ['title' => 'Matrix', 'synopsis' => 'Un programador informático descubre que la realidad que conoce es una simulación creada por máquinas.', 'year' => 1999, 'cover' => 'https://m.media-amazon.com/images/M/MV5BNzQzOTk3OTAtNDQ0Zi00ZTVlLTM5YTUtZmFiZmZlZmZlZmZlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_.jpg', 'created_at' => now(), 'updated_at' => now()],
+            ['title' => 'El Señor de los Anillos', 'synopsis' => 'Un hobbit emprende un épico viaje para destruir un anillo mágico y salvar la Tierra Media del señor oscuro Sauron.', 'year' => 2001, 'cover' => 'https://m.media-amazon.com/images/M/MV5BN2EyZjM3NzUtNWUzMi00MTgxLWI0NTctMzY4M2VlOTdjZWRiXkEyXkFqcGdeQXVyNDUzOTQ5MjY@._V1_.jpg', 'created_at' => now(), 'updated_at' => now()],
+            ['title' => 'Gladiador', 'synopsis' => 'Un general romano es traicionado y reducido a la esclavitud, pero se convierte en gladiador para vengarse del corrupto emperador.', 'year' => 2000, 'cover' => 'https://m.media-amazon.com/images/M/MV5BMDliMmNhNDEtODUyOS00MjNlLTgxODEtN2U3NzIxMGVkZTA1XkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_.jpg', 'created_at' => now(), 'updated_at' => now()],
+            ['title' => 'El Club de la Pelea', 'synopsis' => 'Un oficinista insomne y un vendedor de jabón carismático forman un club de lucha clandestino que evoluciona hacia algo más oscuro.', 'year' => 1999, 'cover' => 'https://m.media-amazon.com/images/M/MV5BMmEzNTkxYjQtZTc0MC00YTVjLTg5ZTEtZWMwOWVlYzY0NWIwXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_.jpg', 'created_at' => now(), 'updated_at' => now()],
+            ['title' => 'La Lista de Schindler', 'synopsis' => 'En la Segunda Guerra Mundial, un empresario alemán salva la vida de más de mil judíos polacos empleándolos en su fábrica.', 'year' => 1993, 'cover' => 'https://m.media-amazon.com/images/M/MV5BNDE4OTEwMzgtMjQ4My00NzViLTkxMmItZTZmMDZmNmRlZmU2XkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_.jpg', 'created_at' => now(), 'updated_at' => now()],
+            ['title' => 'Toy Story', 'synopsis' => 'Un vaquero de juguete se siente amenazado cuando un nuevo juguete espacial llega para robarle el protagonismo ante su dueño.', 'year' => 1995, 'cover' => 'https://m.media-amazon.com/images/M/MV5BMDU2ZWJlMjktMTRhMy00ZTA5LWEzNDgtYmNmZTEwZTViZWJkXkEyXkFqcGdeQXVyNDQ2OTk4MzI@._V1_.jpg', 'created_at' => now(), 'updated_at' => now()],
+            ['title' => 'Joker', 'synopsis' => 'El origen del villano más icónico de DC Comics: un comediante fracasado que se convierte en el criminal más temido de Gotham.', 'year' => 2019, 'cover' => 'https://m.media-amazon.com/images/M/MV5BNGVjNWI4ZGUtNzE0MS00YTJmLWE0ZDctN2ZiYTk2YmI3NTYyXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg', 'created_at' => now(), 'updated_at' => now()],
+            ['title' => 'Parásitos', 'synopsis' => 'Una familia pobre se infiltra en la vida de una familia rica con consecuencias inesperadas y perturbadoras.', 'year' => 2019, 'cover' => 'https://m.media-amazon.com/images/M/MV5BYWZjMjk3ZTItODQ2ZC00NTY5LWE0ZDYtZTI3MjcwN2Q5NTVkXkEyXkFqcGdeQXVyODk4OTc3MTY@._V1_.jpg', 'created_at' => now(), 'updated_at' => now()],
+            ['title' => 'Avengers: Endgame', 'synopsis' => 'Los Vengadores sobrevivientes toman medidas finales para revertir las acciones de Thanos y restaurar el equilibrio del universo.', 'year' => 2019, 'cover' => 'https://m.media-amazon.com/images/M/MV5BMTc5MDE2ODcwNV5BMl5BanBnXkFtZTcwMzI2NzQ2NzM@._V1_.jpg', 'created_at' => now(), 'updated_at' => now()],
+            ['title' => 'Coco', 'synopsis' => 'Un niño mexicano viaja al mundo de los muertos para encontrar a su tatarabuelo y descubrir la verdad sobre su familia.', 'year' => 2017, 'cover' => 'https://m.media-amazon.com/images/M/MV5BYjQ5NjM0Y2YtNjZkNC00ZDhkLWJjMWItN2QyNzFkMDE3ZjAxXkEyXkFqcGdeQXVyODIxMzk5NjA@._V1_.jpg', 'created_at' => now(), 'updated_at' => now()],
+            ['title' => 'Spider-Man: No Way Home', 'synopsis' => 'Peter Parker pide ayuda al Doctor Strange para que el mundo olvide que es Spider-Man, pero el hechizo sale mal.', 'year' => 2021, 'cover' => 'https://m.media-amazon.com/images/M/MV5BZWMyYzFjYTYtNTRjYi00OGExLWE2YzgtOGRmYjAxZTU3NzAyXkEyXkFqcGdeQXVyMzQ0MzA0NTM@._V1_.jpg', 'created_at' => now(), 'updated_at' => now()],
+            ['title' => 'Top Gun: Maverick', 'synopsis' => 'Después de más de 30 años, Maverick sigue en la Armada y debe enfrentarse a sus fantasmas del pasado al entrenar a una nueva generación de pilotos.', 'year' => 2022, 'cover' => 'https://m.media-amazon.com/images/M/MV5BZWYzOGEwNTgtNWU3NS00ZTQ0LWJkODUtMmVhMjIwMjA1ZmQwXkEyXkFqcGdeQXVyMjkwOTAyMDU@._V1_.jpg', 'created_at' => now(), 'updated_at' => now()],
+            ['title' => 'El Rey León', 'synopsis' => 'Un joven león huye de su reino tras ser culpado por la muerte de su padre, pero debe regresar para reclamar su trono.', 'year' => 1994, 'cover' => 'https://m.media-amazon.com/images/M/MV5BYTYxNGMyZTYtMjE3MS00MzNjLWFjNmYtMDk3N2FmM2JiM2M1XkEyXkFqcGdeQXVyNjY5NDU4NzI@._V1_.jpg', 'created_at' => now(), 'updated_at' => now()],
+        ]);
     }
 }
