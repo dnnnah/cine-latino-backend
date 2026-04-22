@@ -1,58 +1,186 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# CineLatino — Backend API
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+REST API desarrollada con Laravel 13 para gestionar un catálogo de películas en español. Forma parte del proyecto académico CineLatino, una aplicación web full-stack desarrollada para la materia de Desarrollo de Aplicaciones Web.
 
-## About Laravel
+## Stack tecnológico
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- **PHP** 8.5
+- **Laravel** 13
+- **MySQL** 9.6
+- **Eloquent ORM**
+- **Laravel CORS** (allowed origins: *)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Requisitos previos
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- PHP >= 8.2
+- Composer
+- MySQL
 
-## Learning Laravel
+## Instalación local
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
-
-## Agentic Development
-
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
-
+1. Clona el repositorio:
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+   git clone https://github.com/tu-usuario/cinelatino-backend.git
+   cd cinelatino-backend
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+2. Instala dependencias:
+```bash
+   composer install
+```
 
-## Contributing
+3. Copia el archivo de entorno:
+```bash
+   cp .env.example .env
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+4. Genera la clave de la aplicación:
+```bash
+   php artisan key:generate
+```
 
-## Code of Conduct
+5. Configura tu base de datos en `.env`:
+```env
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=laravel
+   DB_USERNAME=root
+   DB_PASSWORD=
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+6. Ejecuta las migraciones:
+```bash
+   php artisan migrate
+```
 
-## Security Vulnerabilities
+7. Ejecuta el seeder con las 20 películas:
+```bash
+   php artisan db:seed --class=MoviesTableSeeder
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+8. Inicia el servidor:
+```bash
+   php artisan serve
+```
 
-## License
+El servidor corre en `http://127.0.0.1:8000`
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Endpoints de la API
+
+Base URL: `http://127.0.0.1:8000/api`
+
+| Método | Endpoint | Descripción |
+|--------|----------|-------------|
+| GET | `/movies` | Lista todas las películas |
+| GET | `/movies/{id}` | Obtiene una película por ID |
+| POST | `/movies` | Crea una nueva película |
+| PUT | `/movies/{id}` | Actualiza una película |
+| DELETE | `/movies/{id}` | Elimina una película |
+
+### Ejemplo de respuesta GET `/movies`
+
+```json
+[
+  {
+    "id": 1,
+    "title": "El Padrino",
+    "synopsis": "El patriarca de una dinastía del crimen organizado...",
+    "year": 1972,
+    "cover": "https://m.media-amazon.com/images/...",
+    "created_at": "2026-04-15T07:47:07.000000Z",
+    "updated_at": "2026-04-15T07:47:07.000000Z"
+  }
+]
+```
+
+### Ejemplo de body POST `/movies`
+
+```json
+{
+  "title": "Nombre de la película",
+  "synopsis": "Descripción de la película",
+  "year": 2024,
+  "cover": "https://url-de-la-imagen.jpg"
+}
+```
+
+## Estructura del proyecto
+
+```
+catalogo/
+├── app/
+│   ├── Http/
+│   │   └── Controllers/
+│   │       └── MovieController.php   # CRUD completo
+│   └── Models/
+│       └── Movie.php                 # Modelo con $fillable
+├── config/
+│   └── cors.php                      # CORS habilitado
+├── database/
+│   ├── migrations/
+│   │   ├── create_users_table.php
+│   │   ├── create_cache_table.php
+│   │   ├── create_jobs_table.php
+│   │   └── create_movies_table.php   # Estructura de la tabla
+│   └── seeders/
+│       ├── DatabaseSeeder.php
+│       └── MoviesTableSeeder.php     # 20 películas en español
+├── routes/
+│   ├── api.php                       # Rutas RESTful
+│   └── web.php
+├── .env.example
+├── artisan
+├── composer.json
+└── README.md
+```
+
+## Modelo Movie
+
+```php
+protected $fillable = [
+    'title',
+    'synopsis',
+    'year',
+    'cover'
+];
+```
+
+## Base de datos
+
+La tabla `movies` tiene la siguiente estructura:
+
+| Campo | Tipo | Descripción |
+|-------|------|-------------|
+| id | bigint unsigned | Clave primaria |
+| title | varchar(255) | Título de la película |
+| synopsis | text | Sinopsis |
+| year | int | Año de lanzamiento |
+| cover | varchar(255) | URL de la portada |
+| created_at | timestamp | Fecha de creación |
+| updated_at | timestamp | Fecha de actualización |
+
+## CORS
+
+La API tiene CORS habilitado para todos los orígenes (`*`), permitiendo que el frontend Angular consuma los endpoints sin restricciones durante el desarrollo.
+
+```php
+// config/cors.php
+'allowed_origins' => ['*'],
+```
+
+## Frontend relacionado
+
+Este backend está diseñado para trabajar en conjunto con el frontend de CineLatino desarrollado en Angular 21.
+
+Repositorio frontend: [cinelatino-frontend](https://github.com/tu-usuario/cinelatino-frontend)
+
+## Autor
+
+| | |
+|---|---|
+| **Estudiante** | Donnovan Trejo Corona |
+| **Código** | 224065707 |
+| **Materia** | Desarrollo de Aplicaciones Web |
+| **Año** | 2026 |
+| **Contacto** | donnovan.trejo6570@gmail.com |
