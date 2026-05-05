@@ -183,4 +183,3 @@ Repositorio frontend: [cinelatino-frontend](https://github.com/tu-usuario/cinela
 | **Código** | 224065707 |
 | **Materia** | Desarrollo de Aplicaciones Web |
 | **Año** | 2026 |
-| **Contacto** | donnovan.trejo6570@gmail.com |
